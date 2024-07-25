@@ -1,13 +1,24 @@
 package net.media.training.live.dip;
 
-/**
- * Created by IntelliJ IDEA.
- * User: goyalamit
- * Date: Jul 13, 2011
- * Time: 10:05:38 AM
- * To change this template use File | Settings | File Templates.
- */
-public interface EncodingModule {
-    public void encode();
-}
+import java.io.IOException;
+import java.util.Base64;
 
+public class EncodingModule {
+    private Reader reader;
+    private Writer writer;
+
+    public EncodingModule(Reader reader, Writer writer) {
+        this.reader = reader;
+        this.writer = writer;
+    }
+
+    public void encode() {
+        try {
+            String input = reader.read();
+            String encoded = Base64.getEncoder().encodeToString(input.getBytes());
+            writer.write(encoded);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}

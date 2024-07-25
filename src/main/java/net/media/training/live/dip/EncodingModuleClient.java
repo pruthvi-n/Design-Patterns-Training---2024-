@@ -1,6 +1,8 @@
 package net.media.training.live.dip;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Created by IntelliJ IDEA.
@@ -11,9 +13,21 @@ import java.io.IOException;
  */
 public class EncodingModuleClient {
     public static void main(String[] args) throws IOException {
-        EncodingModule encodingModulewithFiles  = new EncodeWithFiles();
-        EncodingModule encodingModuleBasedOnNetwork  = new EncodeBasedOnNetworkAndDatabase();
-        encodingModulewithFiles.encode();
-        encodingModuleBasedOnNetwork.encode();
+       // Encoding with file reader and file writer
+        Reader fileReader = new FileReader("/path/to/input.txt");
+        Writer fileWriter = new FileWriter("/path/to/output.txt");
+        EncodingModule fileEncoding = new EncodingModule(fileReader, fileWriter);
+        fileEncoding.encode();
+
+        // Encoding with network reader and database writer
+        try {
+            URL url = new URL("http://myfirstappwith.appspot.com/index.html");
+            Reader networkReader = new NetworkReader(url);
+            Writer databaseWriter = new DatabaseWriter();
+            EncodingModule networkEncoding = new EncodingModule(networkReader, databaseWriter);
+            networkEncoding.encode();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
 }
