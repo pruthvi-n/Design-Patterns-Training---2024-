@@ -27,6 +27,4 @@ public class EmployeeTest {
         String expectedEmployeeInfo = "<div><h1>Employee Info</h1><div id='emp1'><span>Sherlock Holmes</span><div class='left'><span>Leave Left :</span><span>Annual Salary:</span><span>Manager:</span><span>Reimbursable Leave:</span></div><div class='right'><span>0</span><span>4141</span><span>None</span><span>13</span></div> </div>";
         assertEquals("Employee info should be equal", expectedEmployeeInfo, employeeInfo);
     }
-
-
 }

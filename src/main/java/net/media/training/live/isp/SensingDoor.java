@@ -9,12 +9,12 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  * Time: 4:21:11 PM
  * To change this template use File | Settings | File Templates.
  */
-public class SensingDoor implements Door,SensorClient{
+public class SensingDoor implements DoorWithProximityCallback{
     private boolean isLocked;
     private boolean isOpened;
 
     public SensingDoor(Sensor sensor) {
-        sensor.register(this);
+    sensor.register(this);
     }
 
     public void lock() {

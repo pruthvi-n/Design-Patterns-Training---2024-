@@ -9,7 +9,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  * Time: 10:26:24 AM
  * To change this template use File | Settings | File Templates.
  */
-public class TimedDoor implements Door,TimerClient  {
+public class TimedDoor implements DoorWithTimeOutCallback{
     private boolean isLocked;
     private boolean isOpened;
     private static final int TIME_OUT = 100;
@@ -38,5 +38,4 @@ public class TimedDoor implements Door,TimerClient  {
     public void timeOutCallback() {
         this.isLocked = true;
     }
-
 }
